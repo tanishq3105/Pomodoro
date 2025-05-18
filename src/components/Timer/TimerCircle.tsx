@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSettings } from '../../contexts/SettingsContext';
+
 
 interface TimerCircleProps {
   percentage: number;
@@ -7,20 +7,14 @@ interface TimerCircleProps {
 }
 
 const TimerCircle: React.FC<TimerCircleProps> = ({ percentage, timerState }) => {
-  const { settings } = useSettings();
+ 
   const radius = 120;
   const circumference = 2 * Math.PI * radius;
   const strokeWidth = 16;
   
   // Set stroke color based on timer state and theme
   const getStrokeColor = () => {
-    if (settings.theme === 'blue') {
-      return timerState === 'focus' ? '#6366F1' : '#818CF8';
-    } else if (settings.theme === 'coral') {
       return timerState === 'focus' ? '#F97316' : '#FB923C';
-    } else { // teal
-      return timerState === 'focus' ? '#14B8A6' : '#2DD4BF';
-    }
   };
 
   return (
