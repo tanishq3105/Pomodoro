@@ -1,10 +1,6 @@
 import React from 'react';
 import { 
-  LayoutDashboard, 
-  FolderKanban, 
-  LineChart, 
-  User, 
-  Settings, 
+  LayoutDashboard,  
   Clock 
 } from 'lucide-react';
 import { useTimer } from '../../contexts/TimerContext';

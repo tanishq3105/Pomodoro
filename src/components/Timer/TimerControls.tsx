@@ -1,7 +1,6 @@
 import React from 'react';
 import { Play, Pause, RotateCcw, SkipForward } from 'lucide-react';
 import { useTimer } from '../../contexts/TimerContext';
-import { useSettings } from '../../contexts/SettingsContext';
 
 const TimerControls: React.FC = () => {
   const { isActive, isPaused, startTimer, pauseTimer, resetTimer, skipTimer } = useTimer();

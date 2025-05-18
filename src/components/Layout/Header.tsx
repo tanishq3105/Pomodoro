@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bell } from 'lucide-react';
-import { useSettings } from '../../contexts/SettingsContext';
+
 
 const Header: React.FC = () => {
   const currentDate = new Date();
