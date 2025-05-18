@@ -1,6 +1,5 @@
 let primaryAudio: HTMLAudioElement | null = null;
 let fallbackAudios: HTMLAudioElement[] = [];
-let audioLoaded = false;
 let audioLoadAttempted = false;
 
 // Primary notification sound URL
@@ -30,7 +29,6 @@ export const preloadNotificationSounds = (): void => {
     
     // Add loaded event listener to track successful loading
     primaryAudio.addEventListener('canplaythrough', () => {
-      audioLoaded = true;
       console.log('Notification sound preloaded successfully');
     });
     
@@ -49,20 +47,15 @@ export const preloadNotificationSounds = (): void => {
  */
 const preloadFallbackSounds = (): void => {
   fallbackAudios = [];
-  
-  FALLBACK_SOUND_URLS.forEach((url, index) => {
+  FALLBACK_SOUND_URLS.forEach((url) => {
     try {
       const audio = new Audio(url);
-      
       audio.addEventListener('error', () => {
         console.error(`Fallback audio ${url} failed to load`);
       });
-      
       audio.addEventListener('canplaythrough', () => {
-        audioLoaded = true;
         console.log(`Fallback sound ${url} preloaded successfully`);
       });
-      
       audio.load();
       fallbackAudios.push(audio);
     } catch (error) {
@@ -115,10 +108,8 @@ const playFallbackAudio = (index: number): Promise<void> | void => {
     console.error('All preloaded audio formats failed to play');
     return;
   }
-  
   const audio = fallbackAudios[index];
   audio.currentTime = 0;
-  
   return audio.play().catch(error => {
     console.error(`Failed to play fallback audio ${index}:`, error);
     // Try the next fallback
@@ -168,13 +159,11 @@ const tryFallbackAudio = (formats: string[], index: number): void => {
     console.error('All audio formats failed to load');
     return;
   }
-  
   const fallbackAudio = new Audio(formats[index]);
   fallbackAudio.addEventListener('error', () => {
     // Try next format
     tryFallbackAudio(formats, index + 1);
   });
-  
   fallbackAudio.play().catch(error => {
     console.error(`Failed to play fallback audio ${formats[index]}:`, error);
     tryFallbackAudio(formats, index + 1);

@@ -59,7 +59,7 @@ export const TimerProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [settings, timerState]);
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: ReturnType<typeof setInterval> | null = null;
 
     if (isActive && !isPaused) {
       interval = setInterval(() => {
