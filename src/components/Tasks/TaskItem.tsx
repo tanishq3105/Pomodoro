@@ -69,7 +69,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
       </div>
       <button
         onClick={() => deleteTask(task.id)}
-        className="text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+        className="text-gray-400 md:hover:text-red-500 transition-colors opacity-100 md:opacity-0 md:group-hover:opacity-100"
       >
         <Trash2 className="h-4 w-4" />
       </button>
