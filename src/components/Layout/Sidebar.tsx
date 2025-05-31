@@ -10,15 +10,13 @@ const Sidebar: React.FC = () => {
   const { completedPomodoros, focusTimeSpent } = useTimer();
   const { completedTasks } = useTasks();
   
-  // Convert seconds to hours
   const hoursSpent = Math.floor(focusTimeSpent / 3600);
-  // Calculate efficiency percentage (tasks completed per pomodoro)
   const efficiency = completedPomodoros > 0 
     ? Math.round((completedTasks / completedPomodoros) * 100) 
     : 0;
 
   return (
-    <div className="w-64 bg-indigo-600 text-white flex flex-col">
+    <div className="w-64 bg-indigo-600 text-white h-full flex flex-col">
       {/* Logo */}
       <div className="p-4 flex items-center space-x-2">
         <Clock className="h-6 w-6" />
@@ -28,7 +26,6 @@ const Sidebar: React.FC = () => {
       {/* Nav Links */}
       <nav className="flex-1 py-6">
         <NavItem icon={<LayoutDashboard />} label="Dashboard" active />
-       
       </nav>
       
       {/* Stats */}

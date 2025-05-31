@@ -14,7 +14,6 @@ const TimerDisplay: React.FC = () => {
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
-  // Calculate total seconds based on timer state
   const getTotalSeconds = (): number => {
     if (timerState === 'focus') {
       return settings.focusTime * 60;
@@ -25,7 +24,6 @@ const TimerDisplay: React.FC = () => {
     }
   };
 
-  // Get appropriate session label based on timer state
   const getSessionLabel = (): string => {
     if (timerState === 'focus') {
       return 'Focus Time';
@@ -37,17 +35,17 @@ const TimerDisplay: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-8 w-full max-w-xl">
-      <h2 className="text-2xl font-bold text-indigo-600">Focus Session</h2>
+    <div className="flex flex-col items-center justify-center space-y-6 md:space-y-8 w-full max-w-xl px-4">
+      <h2 className="text-xl md:text-2xl font-bold text-indigo-600">Focus Session</h2>
       
-      <div className="relative">
+      <div className="relative w-[280px] md:w-auto">
         <TimerCircle 
           percentage={(seconds / getTotalSeconds()) * 100} 
           timerState={timerState}
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <h1 className="text-6xl font-bold text-gray-800">{formatTime(seconds)}</h1>
-          <p className="text-xl text-gray-500 mt-2">{getSessionLabel()}</p>
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-800">{formatTime(seconds)}</h1>
+          <p className="text-lg md:text-xl text-gray-500 mt-2">{getSessionLabel()}</p>
         </div>
       </div>
       

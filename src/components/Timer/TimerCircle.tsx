@@ -1,34 +1,31 @@
 import React from 'react';
 
-
 interface TimerCircleProps {
   percentage: number;
   timerState: 'focus' | 'shortBreak' | 'longBreak';
 }
 
 const TimerCircle: React.FC<TimerCircleProps> = ({ percentage, timerState }) => {
- 
-  const radius = 120;
+  const radius = 110;
   const circumference = 2 * Math.PI * radius;
-  const strokeWidth = 16;
+  const strokeWidth = 12;
   
-  // Set stroke color based on timer state and theme
   const getStrokeColor = () => {
-      return timerState === 'focus' ? '#F97316' : '#FB923C';
+    return timerState === 'focus' ? '#F97316' : '#FB923C';
   };
 
   return (
     <div className="relative">
       <svg
-        width="300"
-        height="300"
-        viewBox="0 0 300 300"
-        className="transform -rotate-90"
+        width="280"
+        height="280"
+        viewBox="0 0 280 280"
+        className="transform -rotate-90 w-[280px] h-[280px] md:w-[300px] md:h-[300px]"
       >
         {/* Background circle */}
         <circle
-          cx="150"
-          cy="150"
+          cx="140"
+          cy="140"
           r={radius}
           strokeWidth={strokeWidth}
           stroke="#E5E7EB"
@@ -37,8 +34,8 @@ const TimerCircle: React.FC<TimerCircleProps> = ({ percentage, timerState }) => 
         
         {/* Progress circle */}
         <circle
-          cx="150"
-          cy="150"
+          cx="140"
+          cy="140"
           r={radius}
           strokeWidth={strokeWidth}
           stroke={getStrokeColor()}
